@@ -23,22 +23,22 @@ Console based solution for the excite test scenario of an ATMsim.
 
   Above shall withdraw 1 note of $50 and $20 each. 
 
- ########   QUICK HELP   ########
- ##
- ##
- ## ENTER==>'?list' for help on list of commands & descriptions
- ## ENTER==>'?help <cmd>' for help on specific command
- ##
- ##
- ## ENTER==>'wd <amount>' to withdraw cash
- ## ENTER==>'ac' to get count of all notes of each type
- ## ENTER==>'nc <denomination>' to get count of a particular note type
- ## ENTER==>'ri <50,12;20,12;10,12;5,12>' to re-initialise ATMsim for given bundles
- ##
- ##
- ## ENTER==>'exit' to exit the application
- ##
- ## ENTER==>'help' to see this menu again 
+ ###   QUICK HELP  
+ 
+ 
+ * ENTER==>'?list' for help on list of commands & descriptions 
+ * ENTER==>'?help <cmd>' for help on specific command
+ 
+ 
+ * ENTER==>'wd <amount>' to withdraw cash
+ * ENTER==>'ac' to get count of all notes of each type
+ * ENTER==>'nc <denomination>' to get count of a particular note type
+ * ENTER==>'ri <50,12;20,12;10,12;5,12>' to re-initialise ATMsim for given bundles
+ 
+ 
+ * ENTER==>'exit' to exit the application
+ 
+ * ENTER==>'help' to see this menu again 
 
 
 ##Build and Setup: 
