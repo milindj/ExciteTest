@@ -3,6 +3,7 @@ package com.excite.atmsim.components;
 import java.math.BigInteger;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Comparator;
 import java.util.SortedMap;
 import java.util.TreeMap;
 
@@ -18,6 +19,13 @@ import com.excite.atmsim.interfaces.CashRegister;
  */
 public class CashRegisterImpl implements CashRegister {
 
+	public static final Comparator<NoteType> COMPARATOR_DESC_NOTES = new Comparator<NoteType>() {
+		@Override
+		public int compare(NoteType o1, NoteType o2) {
+			// Reverse order for efficient cash dispensing.
+			return o2.compareTo(o1);
+		}
+	};
 	private SortedMap<NoteType, BigInteger> noteRegister;
 
 	/**
@@ -25,7 +33,8 @@ public class CashRegisterImpl implements CashRegister {
 	 * @param bundles
 	 */
 	public CashRegisterImpl(Map<NoteType, BigInteger> bundles) {
-		this.noteRegister = new TreeMap<NoteType, BigInteger>(bundles);
+		this.noteRegister = new TreeMap<NoteType, BigInteger>(COMPARATOR_DESC_NOTES);
+		this.noteRegister.putAll(bundles);
 	}
 
 	/**
@@ -45,8 +54,9 @@ public class CashRegisterImpl implements CashRegister {
 		}
 
 		//Prepare the structure for note-type and quantity to be dispensed.
-		TreeMap<NoteType, BigInteger> bundleToDispense = new TreeMap<NoteType, BigInteger>();
-		
+		TreeMap<NoteType, BigInteger> bundleToDispense = new TreeMap<NoteType, BigInteger>(
+				COMPARATOR_DESC_NOTES);
+
 		//Prepare to find an available combination of notes for the requested amount. 
 		BigInteger[] noteType = new BigInteger[noteRegister.entrySet().size()];
 		BigInteger[] noteCount = new BigInteger[noteRegister.entrySet().size()];

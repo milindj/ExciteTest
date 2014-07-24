@@ -5,6 +5,7 @@ import java.math.BigInteger;
 import java.util.Map;
 import java.util.TreeMap;
 
+import com.excite.atmsim.components.CashRegisterImpl;
 import com.excite.atmsim.components.NoteType;
 import com.excite.atmsim.exception.ATMCashException;
 import com.excite.atmsim.exception.IllegalAmountValueException;
@@ -37,8 +38,10 @@ public class ATM {
 	 * @return
 	 */
 	public Map<NoteType,BigInteger> getCountOfAllNotes(){
-		//Return a copy.
-		return new TreeMap<NoteType, BigInteger>(cashRegister.getBundles());
+		//Return a copy and not the actual references.
+		Map<NoteType,BigInteger> bundleCopy =  new TreeMap<NoteType, BigInteger>(CashRegisterImpl.COMPARATOR_DESC_NOTES);
+		bundleCopy.putAll(cashRegister.getBundles());
+		return bundleCopy;
 	}
 	
 	/**
